@@ -1,0 +1,65 @@
+<h3>Structural directive</h3>
+
+<h4>Old method</h4>
+<div style="border: 1px solid black;">
+    <p class="clickable" (click)="switchVisible()">Click ici</p>
+    <div *ngIf="isVisible; else sinon">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis molestias fugit quae eveniet consequatur alias dolor pariatur iste vel rerum, magnam, autem asperiores adipisci neque omnis perspiciatis officiis, explicabo voluptatum quia quis natus sunt sit. Ab sapiente corrupti blanditiis quo labore tempora molestiae, facere adipisci vitae nostrum quod autem esse.
+    </div>
+    <ng-template #sinon>
+        <p>Hello</p>
+    </ng-template>
+</div>
+
+<h4>New method</h4>
+<div style="border: 1px solid black;">
+    <p class="clickable" (click)="switchVisible()">Click ici</p>
+    @if (isVisible) {
+        <div>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis molestias fugit quae eveniet consequatur alias dolor pariatur iste vel rerum, magnam, autem asperiores adipisci neque omnis perspiciatis officiis, explicabo voluptatum quia quis natus sunt sit. Ab sapiente corrupti blanditiis quo labore tempora molestiae, facere adipisci vitae nostrum quod autem esse.
+        </div>
+    }
+    @else {
+        <p>Hello</p>
+    } 
+</div>
+<hr />
+
+<h4>New method</h4>
+<ul>
+    @for (person of myList; track $index; let odd = $odd; let even = $even) {
+    <li>{{person}}</li>
+    }
+
+</ul>
+
+<h4>Old method</h4>
+<ul>
+    <li *ngFor="let p of myList; let i = index; let pair = even">
+    <p  [class]="pair ? 'pair' : '' ">{{i}} - {{p}} <span *ngIf="pair">*</span></p>
+    </li>
+</ul>
+
+<hr />
+<h3>*ngSwitchCase old method</h3>
+<input type="number" [(ngModel)]="switchValue">
+<div [ngSwitch]="switchValue">
+    <div *ngSwitchCase="switchValue === 1">Coucou</div>
+    <div *ngSwitchCase="switchValue === 2">Hello</div>
+    <div *ngSwitchCase="switchValue === 3">Good Morning</div>
+    <div *ngSwitchCaseDefault>La valeur doit être 1, 2 ou 3</div>
+</div>
+
+<h3>*ngSwitchCase new method</h3>
+<input type="number" [(ngModel)]="switchValue">
+@switch (switchValue) {
+    @case (1) {<p>Coucou</p>
+    }
+    @case (2) {<p>Hello</p>
+    }
+    @case (3) {<p>Good Morning</p>
+    }
+    @default {
+        <p>La valeur doit être 1, 2 ou 3</p>
+    }
+}

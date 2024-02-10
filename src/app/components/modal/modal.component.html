@@ -1,0 +1,10 @@
+<p-dialog [(visible)]="display" (onHide)='dialogHidden($event)'>
+    <ng-template pTemplate="header">
+      Are you Sure?
+    </ng-template>
+    To navigate away
+    <p-footer>
+      <button (click)='selected("ok")'>OK</button>
+      <button (click)='selected("Cancel")'>Cancel</button>
+    </p-footer>
+  </p-dialog>

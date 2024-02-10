@@ -1,0 +1,8 @@
+<h3>Le timer</h3>
+
+<div>
+    <h4>{{timerDisplay}}</h4>
+    <button (click)="start()" class="button-5" [disabled]="seconde > 0 || minute > 0">Start</button>
+    <button (click)="stop()" class="button-5">{{isStopped ? 'Continue' : 'Pause'}}</button>
+    <button (click)="reset()" class="button-5">Reset</button>
+</div>

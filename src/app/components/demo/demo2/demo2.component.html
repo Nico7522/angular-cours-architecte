@@ -1,0 +1,19 @@
+<h3>Biding</h3>
+
+<div>
+    <!-- One way biding -->
+    <p>Valeur : {{bidingProp}}</p>
+    
+    <!-- Two way biding -->
+    <input type="text" [(ngModel)]="bidingProp">
+</div>
+<hr />
+
+<div>
+    <p>Number : {{myNumber}}</p>
+    <!-- Event biding () -->
+    <button (click)="increment()" [disabled]="myNumber >= 10">+</button>
+    <!-- Attribute biding [] -->
+    <button (click)="decrement()" [disabled]="myNumber <= 1">-</button>
+</div>
+

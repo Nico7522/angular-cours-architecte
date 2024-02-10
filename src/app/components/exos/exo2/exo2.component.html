@@ -1,0 +1,33 @@
+<h3>Les formulaires</h3>
+
+<form [formGroup]="form">
+<label for="Nom">Nom</label>
+<input type="text" formControlName="Nom">
+<label for="Prenom">Prenom</label>
+<input type="text" formControlName="Prenom">
+<label for="Email">Email</label>
+<input type="text" formControlName="Email">
+<label for="Password">Mot de passe</label>
+<input type="password" formControlName="Password">
+
+<div formArrayName="Categories">
+    <h3>Ajouter des catégories</h3>
+    <button type="submit" (click)="addCategorie()">Ajouter</button>
+
+    @for (categorie of Categories.controls; track $index) {
+        <div>
+            <label for="">Catégorie {{$index+1}}</label>
+            <input type="text" [formControlName]="$index">
+            <button [disabled]="Categories.controls.length === 1" (click)="removeCategorie($index)">Supprimer</button>
+        </div>
+    }
+
+</div>
+
+<button type="submit" (click)="handleSubmit()">Envoyer</button>
+</form>
+
+@if (userMail != null) {
+    <p>{{userMail}}</p>
+}
+

@@ -1,0 +1,56 @@
+<h3>Création d'un groupe</h3>
+<section class="total-container">
+    <button routerLink="/exo/exo3/group">Vers la liste des groupes</button>
+
+    <form [formGroup]="formGroup">
+        <div class="form-group">
+            <label for="">Nom</label>
+            <input type="text" formControlName="name">
+            @if (!formGroup.get("name")?.valid && formGroup.get("name")?.touched ) {
+                <div class="error">champ requis</div>
+            }
+        </div>
+        <div class="form-group">
+            <label for="">Date de création</label>
+            <input type="date" class="expend" formControlName="creationDate">
+            @if (!formGroup.get("creationDate")?.valid && formGroup.get("creationDate")?.touched ) {
+                <div class="error">champ requis</div>
+            }
+        </div>
+        <div class="form-group">
+            <label for="">Pays</label>
+            <input type="text" formControlName="country">
+            @if (!formGroup.get("country")?.valid && formGroup.get("country")?.touched ) {
+                <div class="error">champ requis</div>
+            }
+        </div>
+    
+        <h4>Entrez les artistes</h4>
+        <div class="form-group" formArrayName="artists">
+            <div *ngFor="let artist of artists.controls; index as i">
+                <select [formControlName]="i">
+                    <option *ngFor="let a of getArtists()" [ngValue]="a">{{a.name}} {{a.surname}}</option>
+                </select>
+                <button type="submit" [disabled]="artists.controls.length === 1" (click)="removeArtist(i)">Supprimer</button>
+            </div>
+            <button type="submit" (click)="addArtist()">Ajouter</button>
+        </div>
+    
+        <h4>Ajouter des styles</h4>
+        <div class="form-group" formArrayName="styles">
+            <div *ngFor="let style of styles.controls; index as i">
+                <select [formControlName]="i">
+                    <option *ngFor="let a of getStyles()" [ngValue]="a">{{a.styleName}}</option>
+                </select>
+                <button type="submit" [disabled]="styles.controls.length === 1" (click)="removeStyle(i)">Supprimer</button>
+            </div>
+            <button type="submit" (click)="addStyle()">Ajouter</button>
+    
+        </div>
+    
+        <button [disabled]="!formGroup.valid" type="submit" [ngClass]="formGroup.valid ? 'submit-valid': 'unvalid'" (click)="handleSubmit()">Valider</button>
+    </form>
+</section>
+<app-modal [show]='showDialog' (selection)="onSelection($event)"></app-modal>
+
+    

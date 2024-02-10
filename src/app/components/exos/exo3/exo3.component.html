@@ -1,0 +1,28 @@
+<h3>Les groupes</h3>
+<div class="container">
+    @for (group of groupList; track $index) {
+        <div>
+            <h4>{{group.name}}</h4>
+            <p>{{group.creationDate}}</p>
+            <h5>Les styles</h5>
+            <ul>
+
+                @for (style of group.styles; track $index) {
+                    <li>{{style.styleName}}</li>
+                }
+
+            </ul>
+
+            <h5>Les artistes</h5>
+            <ul>
+
+                @for (artist of group.artistes; track $index) {
+                    <li>{{artist.name}} {{artist.surname}}</li>
+                }
+
+            </ul>
+        </div>
+    }
+
+    <button routerLink="/exo/exo3/create/group">Ajouter un groupe</button>
+</div>

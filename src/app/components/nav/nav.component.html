@@ -1,0 +1,24 @@
+<nav class="nav">
+    <ul>
+        @for (link of links; track $index) {
+        @if (link.children?.length) {
+        <li (click)="link.isChildrenVisible = !link.isChildrenVisible"><a routerLinkActive="active" [routerLink]="link.url">{{link.title}}</a></li>
+        }
+        @else {
+        <li><a routerLinkActive="active" [routerLink]="link.url">{{link.title}}</a></li>
+
+        }
+        @if (link.isChildrenVisible) {
+        <ul>
+            @for (link2 of link.children; track $index) {
+            <li ><a class="sous-liste" routerLinkActive="active" [routerLink]="link2.url">{{link2.title}}</a></li>
+            }
+        </ul>
+        }
+        }
+    </ul>
+</nav>
+
+
+
+
