@@ -7,11 +7,11 @@
     <input type="text" formControlName="password">
 
     <div formArrayName="Pseudos">
-        @for (control of this.getPseudos().controls; track $index) 
+        @for (control of this.getPseudos().controls; track control; let index = $index) 
         {
-            {{$index+1}}
-            <input type="text" [formArrayName]="$index">
-            <button (click)="removePseudo($index)">Remove</button>
+            {{index+1}}
+            <input type="text" [formControlName]="index">
+            <button (click)="removePseudo(index)">Remove</button>
         }
         <button (click)="addPseudo()">Add pseudo</button>
 

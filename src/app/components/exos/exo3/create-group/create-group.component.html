@@ -1,4 +1,6 @@
 <h3>Création d'un groupe</h3>
+<app-modal [show]='showDialog' (selection)="onSelection($event)"></app-modal>
+
 <section class="total-container">
     <button routerLink="/exo/exo3/group">Vers la liste des groupes</button>
 
@@ -51,6 +53,5 @@
         <button [disabled]="!formGroup.valid" type="submit" [ngClass]="formGroup.valid ? 'submit-valid': 'unvalid'" (click)="handleSubmit()">Valider</button>
     </form>
 </section>
-<app-modal [show]='showDialog' (selection)="onSelection($event)"></app-modal>
 
     
